@@ -1,0 +1,49 @@
+{
+  "name": "@throskam/koa-oas",
+  "version": "0.1.0",
+  "description": "OpenAPI Specification Koa Middleware",
+  "repository": "throskam/koa-oas",
+  "homepage": "https://github.com/throskam/koa-oas",
+  "bugs": "https://github.com/throskam/koa-oas/issues",
+  "author": "Thibaut Roskam <throskam@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "koa",
+    "openapi",
+    "oas",
+    "node",
+    "server",
+    "request",
+    "response",
+    "validation",
+    "coercer",
+    "defaults",
+    "generator",
+    "mock"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "doc": "jsdoc2md index.js > DOC.md",
+    "lint": "eslint lib",
+    "lint:fix": "eslint lib --fix",
+    "release": "standard-version"
+  },
+  "dependencies": {
+    "@throskam/oas-impl": "^0.1.0",
+    "bath": "^2.1.1",
+    "koa-compose": "^4.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.15.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "jsdoc-to-markdown": "^4.0.1",
+    "standard-version": "^5.0.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
