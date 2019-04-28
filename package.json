@@ -21,11 +21,11 @@
     "generator",
     "mock"
   ],
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "doc": "jsdoc2md index.js > DOC.md",
-    "lint": "eslint lib",
-    "lint:fix": "eslint lib --fix",
+    "doc": "jsdoc2md src/index.js > DOC.md",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
     "release": "standard-version"
   },
   "dependencies": {
