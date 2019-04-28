@@ -36,11 +36,11 @@ app.listen(3000)
 ### Error handling
 
 ```
-app.use((ctx, next) => {
+app.use(async (ctx, next) => {
   try {
     await next()
   } catch (err) {
-    switch (err.code) {
+    switch (err.status) {
       case 400:
         console.log('Invalid request', err.errors)
         break
