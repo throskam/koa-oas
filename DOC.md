@@ -28,16 +28,13 @@ Option.
 **Kind**: inner typedef of [<code>koa-oas</code>](#module_koa-oas)  
 **Properties**
 
-| Name | Type |
-| --- | --- |
-| request | <code>Object</code> | 
-| request.type | <code>string</code> | 
-| request.coercer | <code>boolean</code> | 
-| request.validator | <code>boolean</code> | 
-| response | <code>Object</code> | 
-| response.status | <code>number</code> | 
-| response.type | <code>string</code> | 
-| response.coercer | <code>boolean</code> | 
-| response.validator | <code>boolean</code> | 
-| response.generator | <code>boolean</code> | 
+| Name | Type | Description |
+| --- | --- | --- |
+| useRequestCoercer | <code>boolean</code> | Use the request coercer [true] |
+| useRequestValidator | <code>boolean</code> | Use the request validator [true] |
+| useResponseGenerator | <code>boolean</code> | Use the response generator [true] |
+| useResponseCoercer | <code>boolean</code> | Use the response coercer [true] |
+| useResponseValidator | <code>boolean</code> | Use the response validator [true] |
+| defaultRequestContentType | <code>string</code> | The default request content type when no specified [application/json] |
+| defaultResponseContentType | <code>string</code> | The default response content type when no specified [application/json] |
 

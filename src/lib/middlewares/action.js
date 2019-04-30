@@ -7,7 +7,7 @@ module.exports = (option = {}) => {
     await ctx.state.oas.action(ctx, next)
 
     ctx.state.oas.response = {
-      mediaType: ctx.type || option.response.type,
+      mediaType: ctx.type || option.defaultResponseContentType,
       status: ctx.status,
       header: ctx.headerSent,
       content: ctx.body

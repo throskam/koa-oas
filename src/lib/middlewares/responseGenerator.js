@@ -5,13 +5,12 @@ module.exports = (option = {}) => {
     }
 
     ctx.state.oas.response = {
-      mediaType: ctx.type || option.response.type,
-      status: option.response.status
-    }
-
-    ctx.state.oas.response = {
-      ...ctx.state.oas.response,
-      ...ctx.state.oas.impl.responseGenerator(ctx.state.oas.response)
+      status: 200,
+      mediaType: option.defaultResponseContentType,
+      ...ctx.state.oas.impl.responseGenerator({
+        status: 200,
+        mediaType: option.defaultResponseContentType
+      })
     }
 
     return next()

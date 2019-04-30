@@ -60,7 +60,7 @@ module.exports = (document, controller = {}, option = {}) => {
         header: { ...ctx.headers },
         cookie: ctx.headers.cookie,
         content: ctx.body,
-        mediaType: ctx.request.type || option.request.type
+        mediaType: ctx.request.type || option.defaultRequestContentType
       },
       response: false,
       impl: impl(route.method + route.path, route.operation),

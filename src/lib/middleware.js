@@ -9,29 +9,23 @@ const action = require('./middlewares/action')
 
 module.exports = (document, controller = {}, option = {}) => {
   const setting = {
-    request: {
-      type: 'application/json',
-      coercer: true,
-      validator: true,
-      ...option.request
-    },
-    response: {
-      status: 200,
-      type: 'application/json',
-      coercer: true,
-      validator: true,
-      generator: true,
-      ...option.response
-    }
+    useRequestCoercer: true,
+    useRequestValidator: true,
+    useResponseGenerator: true,
+    useResponseCoercer: true,
+    useResponseValidator: true,
+    defaultRequestContentType: 'application/json',
+    defaultResponseContentType: 'application/json',
+    ...option
   }
 
   return compose([
     context(document, controller, setting),
-    ...(setting.request.coercer ? [requestCoercer(setting)] : []),
-    ...(setting.request.validator ? [requestValidator(setting)] : []),
+    ...(setting.useRequestCoercer ? [requestCoercer(setting)] : []),
+    ...(setting.useRequestValidator ? [requestValidator(setting)] : []),
     action(setting),
-    ...(setting.response.generator ? [responseGenerator(setting)] : []),
-    ...(setting.response.coercer ? [responseCoercer(setting)] : []),
-    ...(setting.response.validator ? [responseValidator(setting)] : [])
+    ...(setting.useResponseGenerator ? [responseGenerator(setting)] : []),
+    ...(setting.useResponseCoercer ? [responseCoercer(setting)] : []),
+    ...(setting.useResponseValidator ? [responseValidator(setting)] : [])
   ])
 }

@@ -6,16 +6,13 @@
 /**
  * Option.
  * @typedef {Object} Option
- * @property {Object} request
- * @property {string} request.type
- * @property {boolean} request.coercer
- * @property {boolean} request.validator
- * @property {Object} response
- * @property {number} response.status
- * @property {string} response.type
- * @property {boolean} response.coercer
- * @property {boolean} response.validator
- * @property {boolean} response.generator
+ * @property {boolean} useRequestCoercer - Use the request coercer [true]
+ * @property {boolean} useRequestValidator - Use the request validator [true]
+ * @property {boolean} useResponseGenerator - Use the response generator [true]
+ * @property {boolean} useResponseCoercer - Use the response coercer [true]
+ * @property {boolean} useResponseValidator - Use the response validator [true]
+ * @property {string} defaultRequestContentType - The default request content type when no specified [application/json]
+ * @property {string} defaultResponseContentType - The default response content type when no specified [application/json]
  */
 
 /**
