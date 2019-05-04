@@ -79,6 +79,7 @@ const spec = {
                 schema: {
                   type: 'string',
                   example: 'Hello Steve!'
+                  format: 'greet',
                 }
               }
             }
@@ -95,6 +96,12 @@ app.use(oas(spec, {
     ctx.body = `Hello ${ctx.state.oas.request.path.name}!`
   }
   //*/
+}, {
+  format: {
+    greet: {
+      validator: val => val.startsWith('Hello')
+    }
+  }
 }))
 
 app.on('error', (err, ctx) => {

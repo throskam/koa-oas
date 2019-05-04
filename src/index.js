@@ -13,6 +13,7 @@
  * @property {boolean} useResponseValidator - Use the response validator [true]
  * @property {string} defaultRequestContentType - The default request content type when no specified [application/json]
  * @property {string} defaultResponseContentType - The default response content type when no specified [application/json]
+ * @property {string} format - The format map (see [@throskam/oas-impl](https://github.com/throskam/oas-impl/blob/master/DOC.md#option--object))
  */
 
 /**

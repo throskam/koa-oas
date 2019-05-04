@@ -16,7 +16,10 @@ const memoizer = (fn) => {
 }
 
 module.exports = (document, controller = {}, option = {}) => {
-  const dispatch = oas(document)
+  const dispatch = oas(document, {
+    format: option.format
+  })
+
   const param = memoizer(template => bath(template).params)
 
   return async (ctx, next) => {

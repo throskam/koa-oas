@@ -37,4 +37,5 @@ Option.
 | useResponseValidator | <code>boolean</code> | Use the response validator [true] |
 | defaultRequestContentType | <code>string</code> | The default request content type when no specified [application/json] |
 | defaultResponseContentType | <code>string</code> | The default response content type when no specified [application/json] |
+| format | <code>string</code> | The format map (see [@throskam/oas-impl](https://github.com/throskam/oas-impl/blob/master/DOC.md#option--object)) |
 
