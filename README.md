@@ -18,44 +18,96 @@ Koa middleware for OpenAPI v3 specification.
 ## Usage
 
 ```
-import Koa from 'koa'
-import oas from 'koa-oas'
+const  Koa = require('koa')
+const oas = require('@throskam/koa-oas')
 
 const app = new Koa()
 
-const controller = {
-  getPets: ctx => ctx.body = 'getPets',
-  getPet: ctx => ctx.body = 'getPet ' + ctx.state.oas.request.path.id
-}
-
-app.use(oas('/path/to/specification', controller))
-
-app.listen(3000)
-```
-
-### Error handling
-
-```
+// Error handling
 app.use(async (ctx, next) => {
   try {
     await next()
   } catch (err) {
-    switch (err.status) {
-      case 400:
-        console.log('Invalid request', err.errors)
-        break
-      case 404:
-        console.log('No route found')
-        break
-      case 500:
-        console.log('Invalid response', err.errors)
-        break
-      case 501:
-        console.log('No implementation found')
-        break
-    }
+    /**
+     * Statuses:
+     * 400: Invalid request, see err.errors for details
+     * 404: No route found
+     * 500: Invalid response, see err.errors for details
+     * 501: No implementation
+     */
+    ctx.status = err.status || 500;
+    ctx.body = err.message;
+    ctx.app.emit('error', err, ctx);
   }
 })
+
+const spec = {
+  openapi: '3.0.0',
+  info: {
+    version: '1.0.0',
+    title: 'Hello API',
+    license: {
+      name: 'MIT'
+    }
+  },
+  servers: [{
+    'url': 'http://example.com/v1'
+  }],
+  paths: {
+    '/hello/{name}': {
+      get: {
+        summary: 'Greets the given name',
+        operationId: 'greeting',
+        tags: [
+          'greet'
+        ],
+        parameters: [
+          {
+            name: 'name',
+            in: 'path',
+            description: 'The name to greet',
+            schema: {
+              type: 'string'
+            }
+          }
+        ],
+        responses: {
+          '200': {
+            description: 'Greeting',
+            content: {
+              'text/plain': {
+                schema: {
+                  type: 'string',
+                  example: 'Hello Steve!'
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+app.use(oas(spec, {
+  //** Add or remove a '/' to toggle response generation.
+  greeting: ctx => {
+    ctx.body = `Hello ${ctx.state.oas.request.path.name}!`
+  }
+  //*/
+}))
+
+app.on('error', (err, ctx) => {
+  /* centralized error handling:
+   *   console.log error
+   *   write error to log file
+   *   save error and request information to database if ctx.request match condition
+   *   ...
+   */
+  console.log(err)
+});
+
+app.listen(3000)
 ```
 
 ## Documentation
