@@ -29,7 +29,7 @@
     "release": "standard-version"
   },
   "dependencies": {
-    "@throskam/oas-impl": "^0.1.0",
+    "@throskam/oas-impl": "^0.2.0",
     "bath": "^2.1.1",
     "koa-compose": "^4.1.0"
   },

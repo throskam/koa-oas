@@ -1,13 +1,6 @@
 const bath = require('bath').default
 const oas = require('@throskam/oas-impl')
 
-const resolver = (document) => {
-  const parser = oas.parser()
-  const dispatch = parser(document).then(definition => oas.dispatcher(definition))
-
-  return async (method, path) => (await dispatch)(method, path)
-}
-
 const memoizer = (fn) => {
   const cache = {}
 
@@ -23,15 +16,8 @@ const memoizer = (fn) => {
 }
 
 module.exports = (document, controller = {}, option = {}) => {
-  const resolve = resolver(document)
+  const dispatch = oas(document)
   const param = memoizer(template => bath(template).params)
-  const impl = memoizer(operation => ({
-    requestCoercer: oas.requestCoercer(operation),
-    requestValidator: oas.requestValidator(operation),
-    responseCoercer: oas.responseCoercer(operation),
-    responseGenerator: oas.responseGenerator(operation),
-    responseValidator: oas.responseValidator(operation)
-  }))
 
   return async (ctx, next) => {
     // Normalize method.
@@ -45,7 +31,7 @@ module.exports = (document, controller = {}, option = {}) => {
       .replace(/\/+$/, '') // remove trailing slash
       .replace(/^\/*/, '/') // add leading slash
 
-    const route = await resolve(method, path)
+    const route = await dispatch(method, path)
 
     if (!route) {
       ctx.throw(404)
@@ -63,7 +49,7 @@ module.exports = (document, controller = {}, option = {}) => {
         mediaType: ctx.request.type || option.defaultRequestContentType
       },
       response: false,
-      impl: impl(route.method + route.path, route.operation),
+      impl: route.impl,
       action: controller[route.operation.operationId]
     }
 
