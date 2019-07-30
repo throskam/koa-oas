@@ -48,7 +48,7 @@ module.exports = (document, controller = {}, option = {}) => {
         query: { ...ctx.query },
         header: { ...ctx.headers },
         cookie: ctx.headers.cookie,
-        content: ctx.body,
+        content: ctx.request.body || ctx.req.body,
         mediaType: ctx.request.type || option.defaultRequestContentType
       },
       response: false,
