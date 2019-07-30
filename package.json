@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@throskam/oas-impl": "^0.3.0",
-    "bath": "^2.1.1",
+    "bath": "^3.0.1",
     "koa-compose": "^4.1.0"
   },
   "devDependencies": {
