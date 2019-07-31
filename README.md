@@ -1,5 +1,10 @@
 # OpenAPI Specification Koa Middleware
 
+![CircleCI](https://img.shields.io/circleci/build/github/throskam/koa-oas)
+![Codecov](https://img.shields.io/codecov/c/github/throskam/koa-oas)
+![npm-version](https://img.shields.io/npm/v/@throskam/koa-oas)
+![npm-license](https://img.shields.io/npm/l/@throskam/koa-oas)
+
 Koa middleware for OpenAPI v3 specification.
 
 ## Features
