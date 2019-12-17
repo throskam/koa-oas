@@ -63,6 +63,8 @@ module.exports = (document, controller = {}, option = {}) => {
     }
 
     ctx.set(ctx.state.oas.response.header)
+    ctx.type = ctx.state.oas.response.mediaType
+    ctx.status = ctx.state.oas.response.status
     ctx.body = ctx.state.oas.response.content
   }
 }

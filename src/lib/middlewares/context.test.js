@@ -20,11 +20,13 @@ describe('Basics', () => {
 
   const middleware = createContextMiddleware(document)
 
-  it('should set the body and headers', async () => {
-    expect.assertions(2)
+  it('should set the status, headers, content type and body', async () => {
+    expect.assertions(4)
 
+    const status = 200
     const header = { key: 'value' }
     const content = { foo: 'bar' }
+    const mediaType = 'application/json'
 
     const ctx = {
       method: '',
@@ -40,6 +42,8 @@ describe('Basics', () => {
 
     const next = jest.fn(() => {
       ctx.state.oas.response = {
+        mediaType,
+        status,
         header,
         content
       }
@@ -47,8 +51,10 @@ describe('Basics', () => {
 
     await middleware(ctx, next)
 
-    expect(ctx.body).toStrictEqual(content)
+    expect(ctx.status).toStrictEqual(status)
     expect(ctx.headerSent).toStrictEqual(header)
+    expect(ctx.type).toStrictEqual(mediaType)
+    expect(ctx.body).toStrictEqual(content)
   })
 
   it('should normalize the method and path', async () => {
