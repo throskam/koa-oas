@@ -19,9 +19,9 @@ module.exports = (option = {}) => {
               : statusKeys[0]
 
     // Choose the most appropriate media type (default or first)
-    const mediaType = responses[statusKey].content[option.defaultResponseContentType]
-      ? option.defaultResponseContentType
-      : Object.keys(responses[statusKey].content)[0]
+    const mediaType = !responses[statusKey].content ? undefined
+      : responses[statusKey].content[option.defaultResponseContentType] ? option.defaultResponseContentType
+        : Object.keys(responses[statusKey].content)[0]
 
     // Convert the status key to a valid status code.
     const status = !isNaN(Number(statusKey)) ? Number(statusKey)

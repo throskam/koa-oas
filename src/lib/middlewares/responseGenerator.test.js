@@ -19,6 +19,34 @@ describe('Basics', () => {
     expect(next).toHaveBeenCalled()
   })
 
+  it('should generate undefined when the response has no content', async () => {
+    const next = jest.fn()
+
+    const responseGenerator = jest.fn().mockReturnValue(undefined)
+
+    const ctx = {
+      state: {
+        oas: {
+          operation: {
+            responses: {
+              204: {
+                description: 'Empty body'
+              }
+            }
+          },
+          impl: {
+            responseGenerator
+          }
+        }
+      }
+    }
+
+    await middleware(ctx, next)
+
+    expect(ctx.state.oas.response.status).toEqual(204)
+    expect(ctx.state.oas.response.content).toBeUndefined()
+  })
+
   const responses = {
     200: {
       content: {
