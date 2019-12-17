@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.2](https://github.com/throskam/koa-oas/compare/v0.2.1...v0.2.2) (2019-12-17)
+
+
+### Bug Fixes
+
+* use correct request body ([811278b](https://github.com/throskam/koa-oas/commit/811278b))
+
 ### [0.2.1](https://github.com/throskam/koa-oas/compare/v0.2.0...v0.2.1) (2019-07-30)
 
 # [0.2.0](https://github.com/throskam/koa-oas/compare/v0.1.0...v0.2.0) (2019-05-04)
