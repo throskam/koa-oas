@@ -1,6 +1,6 @@
 {
   "name": "@throskam/koa-oas",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "OpenAPI Specification Koa Middleware",
   "repository": "throskam/koa-oas",
   "homepage": "https://github.com/throskam/koa-oas",
